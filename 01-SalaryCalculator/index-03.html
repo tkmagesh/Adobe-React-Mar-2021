@@ -42,15 +42,27 @@
 
         //UI
         $(function(){
-            var model = new SalaryCalculatorModel();
+            window['model'] = new SalaryCalculatorModel();
+
+            $('#txtBasic').change(function(){
+                model.basic = Number($(this).val());
+            });
+
+            $('#txtHra').change(function(){
+                model.hra = Number($(this).val());
+            });
+
+            $('#txtDa').change(function(){
+                model.da = Number($(this).val());
+            });
+
+            $('#rangeTax').change(function(){
+                model.tax = Number($(this).val());
+            });
+
 
             $('#btnCalculate').click(function(){
                 
-                model.basic = Number($('#txtBasic').val());
-                model.hra = Number($('#txtHra').val());
-                model.da = Number($('#txtDa').val());
-                model.tax = Number($('#rangeTax').val());
-
                 model.calculate();
                 
                 $('#tdBasic').text(model.basic);
