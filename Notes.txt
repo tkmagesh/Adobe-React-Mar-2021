@@ -1,0 +1,24 @@
+Infrastructure
+Powerful Browser
+
+    HTTP Client
+    HTML Document Renderer
+   
+   Virtual OS (HTML5)
+        Data Storage
+            LocalStorage
+            SessionStorage
+            IndexedDB
+            WebSQL (obsolete)
+        File System
+            File System API
+        Multithreading Capabilities
+            WebWorkers
+        Interprocess communication
+            Server Sent Events
+            WebSockets
+            WebRTC (p2p)
+        Application Host
+            Service Workers
+
+Salary = Basic + HRA + DA - Tax 
