@@ -23,22 +23,40 @@
     </style>
     <script src="jquery-3.6.0.js"></script>
     <script>
+        //Model
+        //state & behavior
+        function SalaryCalculatorModel(){
+            //state
+            this.basic = 0;
+            this.hra = 0;
+            this.da = 0;
+            this.tax = 0;
+            this.salary = 0;
+        }
+        //behavior
+        SalaryCalculatorModel.prototype.calculate = function(){
+            var gross = this.basic + this.hra + this.da,
+                net = gross * ((100-this.tax)/100);
+            this.salary = net;
+        }
+
         //UI
         $(function(){
-            $('#btnCalculate').click(function(){
-                var basic = Number($('#txtBasic').val()),
-                    hra = Number($('#txtHra').val()),
-                    da = Number($('#txtDa').val()),
-                    tax = Number($('#rangeTax').val());
+            var model = new SalaryCalculatorModel();
 
-                var gross = basic + hra + da,
-                    net = gross * ((100-tax)/100);
+            $('#btnCalculate').click(function(){
+                model.basic = Number($('#txtBasic').val());
+                model.hra = Number($('#txtHra').val());
+                model.da = Number($('#txtDa').val());
+                model.tax = Number($('#rangeTax').val());
+
+                model.calculate();
                 
-                $('#tdBasic').text(basic);
-                $('#tdHra').text(hra);
-                $('#tdDa').text(da);
-                $('#tdTax').text(tax);
-                $('#tdSalary').text(net);
+                $('#tdBasic').text(model.basic);
+                $('#tdHra').text(model.hra);
+                $('#tdDa').text(model.da);
+                $('#tdTax').text(model.tax);
+                $('#tdSalary').text(model.salary);
             });
         });
 
