@@ -269,3 +269,8 @@ print(emp)
 
 Yarn
     package manager for node.js
+
+
+Assignment
+    Array methods
+        forEach, filter, map, reduce

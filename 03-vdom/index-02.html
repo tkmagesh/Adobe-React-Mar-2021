@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM - introduction</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script>
+        var counter = 0;
+        function onBtnRenderClick(){
+            
+            ++counter;
+            
+            //using Virtual DOM
+            let appEle = React.createElement('div', null,  
+                React.createElement('h1', null, 'React.js'),
+                React.createElement('hr'),
+                React.createElement('section', null,
+                    React.createElement('span', null, 'Counter : '),
+                    React.createElement('span', null, counter)
+                ),
+                React.createElement('section', null, 
+                    React.createElement('h3', null, 'Introduction'),
+                    React.createElement('p', null, 'Enim aliqua commodo officia laboris exercitation dolore qui irure. Esse elit aliquip cupidatat voluptate duis et sint. Amet sunt officia id eu occaecat nostrud labore sit dolore. Velit ad irure cillum anim cupidatat anim ex anim pariatur veniam consectetur. Amet reprehenderit occaecat nisi aute nisi.'),
+                    React.createElement('p', null, 'Irure magna minim duis eiusmod eu ipsum irure laborum Lorem officia aute deserunt. Magna occaecat esse nostrud laboris. Nostrud tempor aliquip minim id cillum adipisicing culpa non ex occaecat cupidatat qui culpa minim. Est laboris consectetur pariatur est consectetur ea aliquip. Minim pariatur eiusmod ea ea incididunt culpa aliqua eiusmod esse incididunt id magna. Commodo dolor quis sit qui dolor est proident amet do. Labore commodo nulla nostrud eu nisi cillum anim labore ad fugiat sunt quis adipisicing.'),
+                    React.createElement('p', null, 'Ut deserunt tempor quis dolor eiusmod dolore duis. Anim nisi irure magna do aliqua enim culpa consectetur ea. Veniam sit reprehenderit dolor aliquip. Commodo ea est occaecat laborum ad excepteur commodo cupidatat Lorem fugiat.')
+                ),
+                React.createElement('section', null, 
+                    React.createElement('h3', null, 'Advantages'),
+                    React.createElement('ol', null,
+                        React.createElement('li', null, 'Declarative'),
+                        React.createElement('li', null, 'Efficient'),
+                    )
+                )
+            )
+            ReactDOM.render(appEle, document.getElementById('root'))
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById("btnRender");
+            btnRender.addEventListener("click", onBtnRenderClick);
+        }
+        window.addEventListener('load', onDocumentLoad);
+
+    </script>
+</head>
+<body>
+    <input type="button" value="Render" id="btnRender">
+    
+    <div id="root"></div>
+</body>
+</html>
