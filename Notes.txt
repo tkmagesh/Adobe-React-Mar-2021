@@ -22,3 +22,250 @@ Powerful Browser
             Service Workers
 
 Salary = Basic + HRA + DA - Tax 
+
+
+ES6 (ECMAScript 6 / ES2015 / ESNext) (2015)
+
+JavaScript (ES5)
+    Datatypes
+        number, boolean, string, undefined, object, function
+    Programming Constructs
+        var, if else, switch case default, for, while, try catch finally, function
+    APIs
+        Math, Array, RegEx, Error, timer (setTimeout, clearTimeout, setInterval, clearInterval), Date
+
+ES6 Feachers
+    1. let
+        var (IS NOT block scoped)
+    2. const
+    3. Array Destructuring
+    4. Rest operator (Array)
+    5. Spread Operator (Array)
+
+        function add(...args){
+            let [first, ...remaining] = args;
+            return args.length <= 1 ? first : first + add(...remaining);
+        }
+
+    6. Object Destructuring
+    7. Rest operator (Object)
+    8. Spread Operator (Object)
+    9. default arguments
+    10. arrow functions
+    11. object construction enhancements
+    12. Symbol
+    13. template string 
+    14. iterators
+    15. generator
+    16. class   
+
+http://es6-features.org
+
+var spinner = /* .... */
+// up(), down()
+
+spinner.up() //=> 1
+spinner.up() //=> 2
+spinner.up() //=> 3
+spinner.up() //=> 4
+
+spinner.down() //=> 3
+spinner.down() //=> 2
+spinner.down() //=> 1
+spinner.down() //=> 0
+spinner.down() //=> -1
+
+NOTE : there should NO WAY the user of the spinner object can influence the outcome of up() and down() from outside
+
+spinner.counter = 10000
+spinner.up() //=> SHOULD NOT return 10001
+
+var spinner = (function(){
+    var counter = 0;
+
+    function up(){
+        return ++counter;
+    }
+
+    function down(){
+        return --counter;
+    }
+
+    return { up, down }
+
+})();
+
+
+function Spinner(){
+    this.counter = 0;
+}
+Spinner.prototype.up = function(){
+    return ++this.counter;
+}
+Spinner.prototype.down = function(){
+    return --this.counter;
+}
+
+
+
+var Spinner = (function(){
+    var counterSymbol = Symbol('counter')
+    
+    function Spinner(){
+        this[counterSymbol] = 0;
+    }
+    Spinner.prototype.up = function(){
+        return ++this[counterSymbol];
+    }
+    Spinner.prototype.down = function(){
+        return --this[counterSymbol];
+    }
+
+    return Spinner;
+})();
+
+class Product {
+    id = 0;
+    name = ''
+    cost = 0;
+
+    constructor(id , name, cost){
+        this.id = id;
+        this.name = name;
+        this.cost = cost;
+    }
+
+    display(){
+        console.log(`id = ${this.id}, name = ${this.name}, cost = ${this.cost}`)
+    }
+
+}
+
+class DiscountedProduct extends Product {
+    discount = 0;
+    constructor(id , name, cost, discount){
+        super(id, name, cost);
+        this.discount = discount;
+    }
+    display(){
+        console.log(`id = ${this.id}, name = ${this.name}, cost = ${this.cost}, discount=${this.discount}`)
+    }
+}
+
+Tools 
+======
+1. Visual Studio Code (http://code.visualstudio.com)
+2. Chrome Browser
+3. Node.js (LTS version) (http://nodejs.org)
+
+Day-3 Agenda
+TypeScript
+    Need
+    Features
+        typesafe code
+        Access control modifiers
+        Interfaces
+        Enums
+        Typed Functions
+        Classes
+        Generics
+    Demo : typescript
+
+React
+Virtual DOM
+Components
+    Presentation
+    State
+    User Interaction Resonsibilities
+
+
+TypeScript
+    JavaScript is loosely typed
+
+int x;
+x = 100;
+x = "string"
+
+var x;
+
+function add(x,y){
+    return x + y;
+}
+
+add(10,20)
+add(10, '20')
+add(10, 'abc')
+add([10,20], [30,40])
+add([10,20], [30,'40'])
+add([10,20], [[30,'40'],'abc'])
+
+function add(x,y){
+    if (typeof x !== 'number' || typeof y !== 'number')
+        throw new Error('Invalid argument(s)')
+    return x + y;
+}
+
+function add(...args){
+    funtion parseArg(n){
+        if (Array.isArray(n)) return add(...n);
+        return isNaN(n) ? 0 : parseInt(n, 10);
+    }
+    return args.length <= 1 ? parseArg(args[0]) : parseArg(args[0]) + add(args.slice(1));
+}
+
+
+Typescript is a superset of JavaScript
+
+let x : number = 10;
+
+function add(x : number,y : number) : number {
+    return x + y;
+}
+
+add(10, 'abc')
+
+    |
+    |
+    V
+typescript compiler
+    |
+    |
+    V
+let x  = 10;
+
+function add(x ,y)  {
+    return x + y;
+}
+
+let isEven = (x : number) : boolean => x % 2 == 0
+
+class Employee{
+    public id : number = 0;
+    public name : string = '';
+    public doj : Date = new Date();
+    public city : string = '';
+}
+
+class Department{
+    public id : number = 0;
+    public name : string = ''
+}
+
+let emp : Employee = new Employee();
+emp.id = 100
+
+interface Identity{
+    id : number
+    name : string
+}
+
+function print(obj : Identity){
+    console.log(obj.id, obj.name);
+}
+
+let emp : Employee = new Employee();
+print(emp)
+
+
+Yarn
+    package manager for node.js
