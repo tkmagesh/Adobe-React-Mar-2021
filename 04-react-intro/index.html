@@ -26,7 +26,7 @@
 
             //Interaction Logic
             onBtnGreetClick = () => {
-                const newMessage = `Hi ${this.state.userName}, Have a nice day!`;
+                const newMessage = `Hi ${this.state.userName}, ${this.props.template}`;
                 this.setState({
                     message : newMessage
                 });
@@ -54,7 +54,8 @@
         }
 
         ReactDOM.render(
-            React.createElement(Greeter)
+            /* React.createElement(Greeter, { template : "Have a good day!" }) */
+            <Greeter template="Have a good day!" />
             , document.getElementById('root')
         );
     </script>
