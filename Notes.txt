@@ -274,3 +274,26 @@ Yarn
 Assignment
     Array methods
         forEach, filter, map, reduce
+
+Day-04
+    JSX
+    React components
+        Presentation
+        UI Behavior
+        State
+    Component Composition
+        Component Communication
+
+
+Transpiler
+    Used to convert the application code from one version of the language to another version of the same language
+
+    Babel (http://babeljs.io)
+        ES6 -> ES5
+        JSX -> JS
+
+
+HTML & JSX
+HTML - Open tags without close tags are allowed
+JSX - Every open tag must have the corresponding close tag
+

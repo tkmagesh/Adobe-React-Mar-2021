@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VDOM - introduction</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <style>
+        .highlight{
+            color : red;
+            font-size: 15pt;
+        }
+
+    </style>
+    <script type="text/babel">
+        var counter = 0;
+        function onBtnRenderClick(){
+            
+            ++counter;
+            
+            //using Virtual DOM
+            let appEle = (
+                <div>
+                    <h1 className="highlight">React.js!</h1>
+                    <hr/>
+                    <section>
+                        <span> Counter : </span>
+                        <span>{counter}</span>
+                    </section>
+                    <section>
+                        <h3>Introduction</h3>
+                        <p>Incididunt sint duis adipisicing sit commodo labore et tempor ad non. Nisi labore exercitation ipsum commodo in adipisicing mollit ad cupidatat mollit quis. Dolore eiusmod labore irure ipsum eiusmod dolore fugiat sint ad do voluptate Lorem et. Enim excepteur esse ipsum tempor veniam ea laborum labore. Proident reprehenderit elit cillum deserunt quis.Dolor quis ipsum qui elit. Nostrud esse commodo cillum eu officia adipisicing qui reprehenderit laboris ad commodo. Lorem aliquip consectetur nulla sint velit in duis consequat qui officia laboris tempor duis proident. Voluptate quis anim ad consectetur fugiat sunt sunt. Laboris mollit ut laboris est ullamco sunt esse qui. Nisi laboris pariatur sint enim fugiat. Incididunt non dolore dolor duis enim occaecat culpa.</p>
+                        <p>Ipsum est magna ut consequat veniam Lorem ad. Consequat consequat laborum aliqua proident. Exercitation consequat sit dolor amet. Anim elit dolor consequat laborum magna. Eu laborum eu nulla quis quis reprehenderit cupidatat aute laboris pariatur id Lorem veniam.Ut id enim consequat nisi ullamco tempor voluptate id voluptate quis non. Aliquip commodo magna nulla commodo irure enim tempor ex. Ex reprehenderit dolor excepteur adipisicing cupidatat. Eiusmod labore dolor in exercitation est aute aute enim ut laboris duis in voluptate cillum. Officia est velit cillum excepteur qui sunt dolor reprehenderit ex irure cupidatat est magna.</p>
+                        <p>Adipisicing veniam officia eu id duis commodo aliquip nisi in dolore. Reprehenderit Lorem nisi culpa non pariatur laboris. Velit voluptate laboris aliquip dolore nulla aliqua non duis esse duis adipisicing Lorem. Sint mollit Lorem velit eu fugiat quis laboris sint sint laboris ut ipsum excepteur deserunt. Eiusmod pariatur est minim cupidatat mollit dolor. Veniam adipisicing non fugiat duis ut elit incididunt ullamco quis dolore.Ea et enim excepteur ullamco esse veniam amet. Proident amet eu sint reprehenderit est velit anim et enim irure nisi mollit aliquip fugiat. Commodo sunt proident ullamco dolor sint et irure consectetur aliquip aute excepteur veniam et. Sit sit voluptate ut qui laboris eiusmod tempor ut voluptate in et anim sit.</p>
+                    </section>
+                    <section>
+                        <h3>Advantages</h3>
+                        <ol>
+                            <li>Declarative</li>
+                            <li>Efficient</li>
+                        </ol>
+                    </section>
+                </div>
+            );
+            ReactDOM.render(appEle, document.getElementById('root'))
+        }
+        function onDocumentLoad(){
+            var btnRender = document.getElementById("btnRender");
+            btnRender.addEventListener("click", onBtnRenderClick);
+        }
+        window.addEventListener('load', onDocumentLoad);
+
+    </script>
+</head>
+<body>
+    <input type="button" value="Render" id="btnRender">
+    
+    <div id="root"></div>
+</body>
+</html>
