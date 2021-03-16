@@ -20,16 +20,23 @@
         class Greeter extends React.Component {
             //State
             state = {
-                message : 'A sample greet message'
+                message : 'A sample greet message',
+                userName : ''
             };
 
             //Interaction Logic
             onBtnGreetClick = () => {
+                const newMessage = `Hi ${this.state.userName}, Have a nice day!`;
                 this.setState({
-                    message : 'A new greet message'
+                    message : newMessage
                 });
-                console.log('greet button clicked');
             };
+
+            onTxtUserNameChange = (evt) => {
+                this.setState({ 
+                    userName : evt.target.value
+                });
+            }
 
             //Presentation
             render(){
@@ -38,7 +45,7 @@
                         <h1>Greeter</h1>
                         <hr/>
                         <label htmlFor="txtUserName">User Name :</label>
-                        <input type="text" />
+                        <input type="text" onChange={this.onTxtUserNameChange}/>
                         <input type="button" value="Greet" onClick={this.onBtnGreetClick} />
                         <div className="highlight">{this.state.message}</div>
                     </section>
