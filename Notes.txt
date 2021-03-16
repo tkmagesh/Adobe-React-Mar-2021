@@ -297,3 +297,15 @@ HTML & JSX
 HTML - Open tags without close tags are allowed
 JSX - Every open tag must have the corresponding close tag
 
+HTML - 'class' attribute is allowed
+JSX - Use 'className' (in place of 'class')
+
+HTML - 'for' attribute is allowed
+JSX - Use 'htmlFor' (in place of 'for')
+
+React Component
+    Encapsulation of Presentation + User Interaction Logic + State
+    Easy to maintain
+    Reusable
+
+    Can be a class OR a function

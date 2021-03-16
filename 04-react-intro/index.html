@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <style>
+        /* Style goes here */
+        .highlight{
+            color : blue;
+            font-size: 18pt;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        /* React code goes here */
+        class Greeter extends React.Component {
+            //State
+            state = {
+                message : 'A sample greet message'
+            };
+
+            //Interaction Logic
+            onBtnGreetClick = () => {
+                this.setState({
+                    message : 'A new greet message'
+                });
+                console.log('greet button clicked');
+            };
+
+            //Presentation
+            render(){
+                return (
+                    <section>
+                        <h1>Greeter</h1>
+                        <hr/>
+                        <label htmlFor="txtUserName">User Name :</label>
+                        <input type="text" />
+                        <input type="button" value="Greet" onClick={this.onBtnGreetClick} />
+                        <div className="highlight">{this.state.message}</div>
+                    </section>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            React.createElement(Greeter)
+            , document.getElementById('root')
+        );
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>
