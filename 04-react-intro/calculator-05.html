@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+
+        class Calculator extends React.Component {
+            state = {
+                n1 : 0,
+                n2 : 0,
+                result : 0
+            }
+            onOperationClick = (evt) => {
+                //console.log(evt.target.getAttribute('id'));
+                const { n1, n2 } = this.state,
+                    oper = evt.target.getAttribute('oper');                
+                const result = eval(oper);
+                this.setState({ result: result });
+            }
+            render(){   
+                return( 
+                    <div>   
+                        <h1>Calculator</h1>
+                        <hr/>
+                        <input type="number" onChange={ evt => this.setState({ n1: parseInt(evt.target.value) }) }/>
+                        <input type="number" onChange={ evt => this.setState({ n2: parseInt(evt.target.value) })}/>
+                        <br/>
+                        <input type="button" oper="n1 + n2" value="Add" onClick={this.onOperationClick}/>
+                        <input type="button" oper="n1 - n2" value="Subtract" onClick={this.onOperationClick}/>
+                        <input type="button" oper="n1 * n2" value="Multiply" onClick={this.onOperationClick}/>
+                        <input type="button" oper="n1 / n2" value="Divide" onClick={this.onOperationClick}/>
+                        <div>{this.state.result}</div>
+                    </div>
+                )
+            }
+        }
+        
+        ReactDOM.render(<Calculator/>, document.getElementById('root'))
+    </script>
+</head>
+<body>
+    <div id="root">
+
+    </div>
+</body>
+</html>
