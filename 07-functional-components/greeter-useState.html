@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <style>
+        /* Style goes here */
+        .highlight{
+            color : blue;
+            font-size: 18pt;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        /* React code goes here */
+        
+
+        const Greeter = ({template}) => {
+            
+            const [message, setMessage] = React.useState('A sample greet message');
+            const [userName, setUserName] = React.useState('');
+            
+            return (
+                <section>
+                    <h1>Greeter</h1>
+                    <hr />
+                    <label htmlFor="txtUserName">User Name :</label>
+                    <input type="text" onChange={ evt => setUserName(evt.target.value) } />
+                    <input type="button" value="Greet" onClick={ () => setMessage(`Hi ${userName}, ${template}`)} />
+                    <div className="highlight">{message}</div>
+                </section>
+            )
+        }
+
+        ReactDOM.render(
+            /* React.createElement(Greeter, { template : "Have a good day!" }) */
+            <Greeter template="Have a good day!" />
+            , document.getElementById('root')
+        );
+    </script>
+</head>
+<body>
+    <div id="root"></div>
+</body>
+</html>

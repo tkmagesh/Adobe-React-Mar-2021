@@ -87,48 +87,40 @@
                 )
             }
         }
-        class SalaryCalculatorInput extends React.Component {
-            render(){
-                
-                const { labelText, onValueChange, type="number", children, ...restProps } = this.props;
-                return(
-                    <div className="field">
-                        <label htmlFor="">{labelText}</label>
-                        <input 
-                            type={type} 
-                            onChange={evt => onValueChange(parseInt(evt.target.value)) } 
-                            {...restProps}
-                        />
-                        {children}
-                    </div>
-                )
-            }
-        }
-        class SalaryCalculatorResult extends React.Component {
-            render(){
-                const { basic, hra, da, tax, salary } = this.props;
-                const salaryEle = salary > 10000 ? (<td className="goodSalary">{salary}</td>) : (<td className="poorSalary">{salary}</td>);
-                return(
-                    <div className="field">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td id="tdBasic">{basic}</td>
-                                    <td id="tdHra">{hra}</td>
-                                    <td id="tdDa">{da}</td>
-                                    <td id="tdTax">{tax}</td>
-                                    {/* {salaryEle} */}
-                                    {/* <td className={ salary > 10000 ? 'goodSalary' : 'poorSalary'}>
-                                        {salary}
-                                    </td> */}
-                                    { salary === 0 ? null : salaryEle}
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                )
-            }
-        }
+        
+        const SalaryCalculatorInput = ({ labelText, onValueChange, type = "number", children, ...restProps }) => (
+            <div className="field">
+                <label htmlFor="">{labelText}</label>
+                <input 
+                    type={type} 
+                    onChange={evt => onValueChange(parseInt(evt.target.value)) } 
+                    {...restProps}
+                />
+                {children}
+            </div>
+        );
+        
+        
+        
+        const SalaryCalculatorResult = ({ basic, hra, da, tax, salary }) => {
+            const salaryEle = salary > 10000 ? (<td className="goodSalary">{salary}</td>) : (<td className="poorSalary">{salary}</td>);
+            return (
+                <div className="field">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td id="tdBasic">{basic}</td>
+                                <td id="tdHra">{hra}</td>
+                                <td id="tdDa">{da}</td>
+                                <td id="tdTax">{tax}</td>
+                                {salary === 0 ? null : salaryEle}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            )
+        };
+
         ReactDOM.render(<SalaryCalculator/>, document.getElementById('root'));
     </script>
 </head>

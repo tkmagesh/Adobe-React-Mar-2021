@@ -316,3 +316,20 @@ Day-06
     3. React hooks
     4. Problem solving (precursor for state manager)
 
+
+React Hooks
+    Functions to handle side effects in Functional Components
+        State
+        Life cycle events
+        Ref to dom node
+    Hook functions must start with 'use'
+    Builtin hooks
+        useState
+        useEffect
+        useRef
+        useReducer
+        useMemo
+        useCallback
+
+Pure Functions
+    A function is called as a pure function, if the function invocation can be replaced with the result of the function without affecting the final outcome.
