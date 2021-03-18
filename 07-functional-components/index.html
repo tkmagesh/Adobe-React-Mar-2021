@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <style>
+        /* Style goes here */
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        /* React code goes here */
+        /* class Header extends React.Component {
+            render(){
+                return(
+                    <h1>Functional Components</h1>
+                );
+            }
+        } */
+
+        /* 
+        const Header = function(){
+            return (
+                <h1>Functional Components</h1>
+            );
+        }; 
+        */
+
+        /* 
+        const Header =  (props) => (
+            <h1>{props.text}</h1>
+        ); 
+        */
+        
+        const Header = ({text}) => (
+            <h1>{text}</h1>
+        );
+
+        ReactDOM.render(
+            <Header text="React is awesome!"/>, 
+            document.getElementById('root')
+        );
+    </script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+
+</html>

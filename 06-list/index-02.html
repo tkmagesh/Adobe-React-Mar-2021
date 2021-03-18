@@ -26,6 +26,10 @@
 
             txtUserNameRef = React.createRef();
 
+            componentDidMount(){
+                this.txtUserNameRef.current.focus();
+            }
+
             onBtnAddNewClick = () => {
                 const { productList, newProductName } = this.state;
                 const updatedProductList = [ ...productList, newProductName ];
