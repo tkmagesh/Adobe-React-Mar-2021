@@ -309,3 +309,10 @@ React Component
     Reusable
 
     Can be a class OR a function
+
+Day-06
+    1. Dynamically create a list
+    2. Functional components
+    3. React hooks
+    4. Problem solving (precursor for state manager)
+

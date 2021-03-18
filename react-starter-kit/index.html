@@ -7,17 +7,56 @@
     <title>React App</title>
     <style>
         /* Style goes here */
-        
+        #root > h1 {
+            color : red;
+        }
+
     </style>
     <script src="react.development.js"></script>
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
     <script type="text/babel">
         /* React code goes here */
-        
+         class Products extends React.Component {
+            render(){
+                const productList = [];
+                /*
+                const productItems = [];
+                for(let product of productList){
+                    const productItem = (<li>{product}</li>);
+                    productItems.push(productItem);
+                } */
+                /* 
+                const productItems = [];
+                for(let index = 0, count = productList.length; index < count; index++){
+                    const product = productList[index];
+                    const productItem = (<li key={index}>{product}</li>);
+                    productItems.push(productItem);
+                } 
+                */
+               const productItems = productList.map((product, idx) => <li key={idx}>{product}</li>);
+                return(
+                    <React.Fragment>
+                        <h1>Products</h1>
+                        <hr />
+                        <label>Product Name :</label>
+                        <input type="text" />
+                        <input type="button" value="Add New" />
+                        <ul>
+                           {productItems}
+                        </ul>      
+                    </React.Fragment>
+                )
+            }
+        }
+        ReactDOM.render(<Products/>, document.getElementById('root'))
     </script>
 </head>
 <body>
-    <div id="root"></div>
+    <div id="root">
+        
+            
+        
+    </div>
 </body>
 </html>
