@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React App</title>
+    <style>
+        /* Style goes here */
+        #root>h1 {
+            color: red;
+        }
+    </style>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        /* React code goes here */
+        const Products = () => {
+            const [newProductName, setNewProductName] = React.useState('');
+            const [productList, setProductList] = React.useState([]);
+            const txtUserNameRef = React.useRef();
+            
+            const onBtnAddNewClick = () => {
+                const updatedProductList = [...productList, newProductName];
+                setProductList(updatedProductList);
+                setNewProductName('')
+                txtUserNameRef.current.focus();
+            };
+            React.useEffect(() => {
+                txtUserNameRef.current.focus();
+            }, []);
+            const productItems = productList.map((product, idx) => <li key={idx}>{product}</li>);
+            return (
+                <React.Fragment>
+                    <h1>Products</h1>
+                    <hr />
+                    <label>Product Name :</label>
+                    <input
+                        type="text"
+                        onChange={evt => setNewProductName(evt.target.value )}
+                        value={newProductName}
+                        ref={txtUserNameRef}
+                    />
+                    <input type="button" value="Add New" onClick={onBtnAddNewClick} />
+                    <ul>
+                        {productItems}
+                    </ul>
+                </React.Fragment>
+            )
+        }
+        /* class Products extends React.Component {
+
+            state = {
+                productList : [],
+                newProductName : ''
+            };
+
+            txtUserNameRef = React.createRef();
+
+            componentDidMount(){
+                this.txtUserNameRef.current.focus();
+            }
+
+            onBtnAddNewClick = () => {
+                const { productList, newProductName } = this.state;
+                const updatedProductList = [ ...productList, newProductName ];
+                this.setState({ 
+                    productList: updatedProductList,
+                    newProductName: ''
+                });
+                this.txtUserNameRef.current.focus();
+            }
+            render() {
+                const { productList, newProductName } = this.state;
+                const productItems = productList.map((product, idx) => <li key={idx}>{product}</li>);
+                return (
+                    <React.Fragment>
+                        <h1>Products</h1>
+                        <hr />
+                        <label>Product Name :</label>
+                        <input 
+                            type="text" 
+                            onChange={ evt => this.setState({ newProductName : evt.target.value })} 
+                            value={newProductName}
+                            ref={this.txtUserNameRef}
+                        />
+                        <input type="button" value="Add New" onClick={this.onBtnAddNewClick} />
+                        <ul>
+                            {productItems}
+                        </ul>
+                    </React.Fragment>
+                )
+            }
+        } */
+        ReactDOM.render(<Products />, document.getElementById('root'))
+    </script>
+</head>
+
+<body>
+    <div id="root">
+
+
+
+    </div>
+</body>
+
+</html>
