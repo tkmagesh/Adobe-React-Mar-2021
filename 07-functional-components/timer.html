@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timer</title>
+    <script src="react.development.js"></script>
+    <script src="react-dom.development.js"></script>
+    <script src="babel.min.js"></script>
+    <script type="text/babel">
+        /* class TimerContainer extends React.Component {
+            state = {
+                showTimer : true
+            };
+
+            render(){
+                return(
+                    <React.Fragment>
+                        <label> Show Timer :</label>
+                        <input type="checkbox" 
+                            checked={this.state.showTimer} 
+                            onChange={ evt => this.setState({showTimer : evt.target.checked})} />
+                        { this.state.showTimer ? <Timer/> : null }
+                    </React.Fragment>
+                )
+            }
+        } */
+
+        const TimerContainer = () => {
+            const [showTimer, setShowTimer] = React.useState(true);
+            return (
+                <React.Fragment>
+                    <label> Show Timer :</label>
+                    <input type="checkbox"
+                        checked={showTimer}
+                        onChange={evt => setShowTimer(evt.target.checked )} />
+                    { showTimer ? <Timer /> : null}
+                </React.Fragment>
+            )
+        };
+       /*  class Timer extends React.Component {
+            state = {
+                currentTime : new Date().toString()
+            }
+            timerId = null;
+            componentDidMount(){
+                console.log('componentDidMount triggered');
+                this.timerId = setInterval(() => {
+                    this.setState({ currentTime: new Date().toString()})
+                }, 1000);
+            }
+            componentWillUnmount(){
+                console.log('componentWillUnmount triggered');
+                if (this.timerId)
+                    clearInterval(this.timerId);
+            }
+            render(){
+                return(
+                    <div>
+                        <label htmlFor="">Time : </label>
+                        <span>{this.state.currentTime}</span>
+                    </div>
+                )
+            }
+        } */
+        const Timer = () => {
+            const [currentTime, setCurrentTime] = React.useState(new Date().toString());
+            React.useEffect(() => {
+                console.log('component mounted (OR) updated');
+                const timerId = setInterval(() => {
+                    setCurrentTime(new Date().toString())
+                },1000);
+                return () => {
+                    console.log('Component unmounted');
+                    if (timerId)
+                        clearInterval(timerId);
+                };
+            }, [] /* the variables which when changed we want the component to be updated */);
+            return (
+                <div>
+                    <label htmlFor="">Time : </label>
+                    <span>{currentTime}</span>
+                </div>
+            )
+        }
+        ReactDOM.render(<TimerContainer/>, document.getElementById('root'))
+    </script>
+</head>
+<body>
+    <h1>Timer</h1>
+    <hr>
+    <div id="root">
+
+    </div>
+</body>
+</html>

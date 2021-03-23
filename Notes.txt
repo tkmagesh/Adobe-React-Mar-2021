@@ -333,3 +333,7 @@ React Hooks
 
 Pure Functions
     A function is called as a pure function, if the function invocation can be replaced with the result of the function without affecting the final outcome.
+
+Assignment
+    Convert the SalaryCalculator & Products into functional components
+    
