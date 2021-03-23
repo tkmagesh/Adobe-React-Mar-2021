@@ -17,7 +17,7 @@
     <script src="babel.min.js"></script>
     <script type="text/babel">
         /* React code goes here */
-        const Products = () => {
+        const Products = ({ onListChange }) => {
             const [newProductName, setNewProductName] = React.useState('');
             const [productList, setProductList] = React.useState([]);
             const txtUserNameRef = React.useRef();
@@ -27,6 +27,7 @@
                 setProductList(updatedProductList);
                 setNewProductName('')
                 txtUserNameRef.current.focus();
+                onListChange(updatedProductList);
             };
             React.useEffect(() => {
                 txtUserNameRef.current.focus();
@@ -50,57 +51,32 @@
                 </React.Fragment>
             )
         }
-        /* class Products extends React.Component {
 
-            state = {
-                productList : [],
-                newProductName : ''
+        const ProductsCount = ({count}) => {
+            return (
+                <div>
+                    <span> Count : </span>
+                    <span>[{count}]</span>
+                </div>
+            )
+        }
+
+        const App = () => {
+            const [productsList, setProductsList] = React.useState([]);
+            const onProductsListChange = (list) => {
+                setProductsList(list)
             };
-
-            txtUserNameRef = React.createRef();
-
-            componentDidMount(){
-                this.txtUserNameRef.current.focus();
-            }
-
-            onBtnAddNewClick = () => {
-                const { productList, newProductName } = this.state;
-                const updatedProductList = [ ...productList, newProductName ];
-                this.setState({ 
-                    productList: updatedProductList,
-                    newProductName: ''
-                });
-                this.txtUserNameRef.current.focus();
-            }
-            render() {
-                const { productList, newProductName } = this.state;
-                const productItems = productList.map((product, idx) => <li key={idx}>{product}</li>);
-                return (
-                    <React.Fragment>
-                        <h1>Products</h1>
-                        <hr />
-                        <label>Product Name :</label>
-                        <input 
-                            type="text" 
-                            onChange={ evt => this.setState({ newProductName : evt.target.value })} 
-                            value={newProductName}
-                            ref={this.txtUserNameRef}
-                        />
-                        <input type="button" value="Add New" onClick={this.onBtnAddNewClick} />
-                        <ul>
-                            {productItems}
-                        </ul>
-                    </React.Fragment>
-                )
-            }
-        } */
-        ReactDOM.render(<div>
-            <div>
-                <span> Count : </span>
-                <span>[count]</span>
-            </div>
-            <Products/>
-            </div>, document.getElementById('root'))
+            return (
+                <div>
+                    <ProductsCount count={productsList.length}/>
+                    <Products onListChange={onProductsListChange}/>
+                </div>
+            )
+        }
+        
+        ReactDOM.render(
+            <App/>
+            , document.getElementById('root'))
     </script>
 </head>
 
