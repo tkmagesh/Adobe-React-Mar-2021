@@ -21,7 +21,7 @@
             const [newProductName, setNewProductName] = React.useState('');
             const [productList, setProductList] = React.useState([]);
             const txtUserNameRef = React.useRef();
-            
+
             const onBtnAddNewClick = () => {
                 const updatedProductList = [...productList, newProductName];
                 setProductList(updatedProductList);
@@ -94,11 +94,18 @@
                 )
             }
         } */
-        ReactDOM.render(<Products />, document.getElementById('root'))
+        ReactDOM.render(<div>
+            <div>
+                <span> Count : </span>
+                <span>[count]</span>
+            </div>
+            <Products/>
+            </div>, document.getElementById('root'))
     </script>
 </head>
 
 <body>
+    
     <div id="root">
 
 
