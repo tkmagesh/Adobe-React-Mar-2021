@@ -10,25 +10,42 @@
     <script src="react-dom.development.js"></script>
     <script src="babel.min.js"></script>
     <script type="text/babel">
-        /* 
+        /*
             1. initial implementation
+            2. handling payload
         */
+
         function spinnerReducer(currentState = 0, action) {
-            if (action.type === 'UP') return currentState + 1;
-            if (action.type === 'DOWN') return currentState - 1;
+            if (action.type === 'UP') return currentState + action.payload;
+            if (action.type === 'DOWN') return currentState - action.payload;
             return currentState;
         }
 
         const Spinner = ({store}) => {
+            const [delta, setDelta] = React.useState(0);
             const counter = store.getState();
-            const up_action = { type : 'UP' },
-                down_action = { type : 'DOWN'};
+            const onDownClick = () => {
+                const action = { type : 'DOWN' , payload : delta};
+                store.dispatch(action);
+            };
+            const onUpClick = () => {
+                const action = { type : 'UP', payload : delta};
+                store.dispatch(action);
+            };
             return(
                 <>
                     <h3>Spinner</h3>
-                    <input type="button" value="DOWN" onClick={ () => store.dispatch(down_action)} />
-                    <span> [ {counter} ] </span>
-                    <input type="button" value="UP" onClick={ () => store.dispatch(up_action)} />
+                    <label> Delta :</label>
+                    <input 
+                        type="number" 
+                        onChange={ evt => setDelta(parseInt(evt.target.value) || 0)} 
+                        value={delta}
+                    />
+                    <div>
+                        <input type="button" value="DOWN" onClick={onDownClick} />
+                        <span> [ {counter} ] </span>
+                        <input type="button" value="UP" onClick={onUpClick} />
+                    </div>
                 </>
             )
         }
