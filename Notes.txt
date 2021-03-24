@@ -337,3 +337,19 @@ Pure Functions
 Assignment
     Convert the SalaryCalculator & Products into functional components
     
+State Manager
+    Architecture
+    Roles of Store, Reducer, Actions, ActionCreators
+    Create a state manager
+    Solve a simple problem using State Manager
+
+State
+    UI State
+        Any data that supports the presentation needs of the component
+        It is highly unlikely that this data is needed in other parts of the application
+        Feel free to maintain in the component state
+
+    Application State
+        Any data that supports the core application logic
+        It is high likely that this data is needed in other parts of the application
+        DO NOT maintain this data in the component state
