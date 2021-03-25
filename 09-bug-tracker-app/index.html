@@ -11,7 +11,7 @@
         (done) 1. Add new bugs
         (done) 2. List the added bugs
         3. Toggle the 'closed' status of any bug
-        4. Remove any bug
+        (done) 4. Remove any bug
         5. Remove 'closed' bugs
         6. Display stats (# of closed bugs / total # of bugs)
         7. Sort the bugs
@@ -72,6 +72,11 @@
                 const newState = [...currentState, action.payload];
                 return newState;
             }
+            if (action.type === 'BUG_REMOVE'){
+                const bugToRemove = action.payload;
+                const newState = currentState.filter(bug => bug.id !== bugToRemove.id);
+                return newState;
+            }
             return currentState;
         }
 
@@ -88,10 +93,14 @@
                 }
                 const addNewAction = { type : 'BUG_ADD_NEW', payload: newBug }
                 return addNewAction;
+            },
+            remove(bugToRemove){
+                const removeAction = { type : 'BUG_REMOVE', payload: bugToRemove };
+                return removeAction
             }
         }
 
-        const BugTracker = ({bugs, addNew}) => {
+        const BugTracker = ({bugs, addNew, remove}) => {
             const [newBugName, setNewBugName] = React.useState('');
             const bugItems = bugs.map(bug => {
                 return (
@@ -100,7 +109,7 @@
                             {bug.name}
                         </span>
                         <div className="datetime">[{bug.createdAt.toString()}]</div>
-                        <input type="button" value="Remove" />
+                        <input type="button" value="Remove" onClick={() => remove(bug)} />
                     </li>
                 )
             })
