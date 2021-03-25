@@ -10,7 +10,7 @@
         ================================================
         (done) 1. Add new bugs
         (done) 2. List the added bugs
-        3. Toggle the 'closed' status of any bug
+        (done) 3. Toggle the 'closed' status of any bug
         (done) 4. Remove any bug
         5. Remove 'closed' bugs
         6. Display stats (# of closed bugs / total # of bugs)
@@ -77,6 +77,10 @@
                 const newState = currentState.filter(bug => bug.id !== bugToRemove.id);
                 return newState;
             }
+            if (action.type === 'BUG_TOGGLE'){
+                const newState = currentState.map(bug => bug.id === action.payload.id ? action.payload : bug);
+                return newState;
+            }
             return currentState;
         }
 
@@ -97,15 +101,23 @@
             remove(bugToRemove){
                 const removeAction = { type : 'BUG_REMOVE', payload: bugToRemove };
                 return removeAction
+            },
+            toggle(bugToToggle){
+                const toggledBug = { ...bugToToggle, isClosed : !bugToToggle.isClosed};
+                const replaceAction = { type : 'BUG_TOGGLE', payload : toggledBug };
+                return replaceAction;
             }
         }
 
-        const BugTracker = ({bugs, addNew, remove}) => {
+        const BugTracker = ({bugs, addNew, remove, toggle}) => {
             const [newBugName, setNewBugName] = React.useState('');
             const bugItems = bugs.map(bug => {
                 return (
                      <li key={bug.id}>
-                        <span className={"bugname " + (bug.isClosed ? 'closed' : '')}>
+                        <span 
+                            className={"bugname " + (bug.isClosed ? 'closed' : '')}
+                            onClick={() => toggle(bug)}
+                        >
                             {bug.name}
                         </span>
                         <div className="datetime">[{bug.createdAt.toString()}]</div>
