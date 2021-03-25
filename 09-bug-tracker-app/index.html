@@ -9,7 +9,7 @@
         Use Cases
         ================================================
         1. Add new bugs
-        2. List the added bugs
+        (done) 2. List the added bugs
         3. Toggle the 'closed' status of any bug
         4. Remove any bug
         5. Remove 'closed' bugs
@@ -68,7 +68,27 @@
         ];
 
         function bugsReducer(currentState = initialState, action){
+            if (action.type === 'BUG_ADD_NEW'){
+                currentState.push(action.payload);
+                return currentState;
+            }
             return currentState;
+        }
+
+        //TO BE FIXED
+        let currentBugId = 4;
+
+        const bugActionCreators = {
+            addNew(bugName){
+                const newBug = {
+                    id : ++currentBugId,
+                    name : bugName,
+                    isClosed : false,
+                    createdAt : new Date()
+                }
+                const addNewAction = { type : 'BUG_ADD_NEW', payload: newBug }
+                return addNewAction;
+            }
         }
 
         const BugTracker = ({bugs}) => {
