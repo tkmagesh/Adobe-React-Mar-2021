@@ -57,17 +57,17 @@
      <script src="react.development.js"></script>
      <script src="react-dom.development.js"></script>
      <script src="babel.min.js"></script>
-     <script src="state-manager.js"></script>
+     <script src="redux.js"></script>
      <script type="text/babel">
 
-        const initialState = [
+        const initialBugsState = [
            /*  { id: 1, name : 'Server communication failure', isClosed : false, createdAt : new Date()},
             { id: 2, name: 'Application not responding', isClosed: true, createdAt: new Date() },
             { id: 3, name: 'Data integrity checks failed', isClosed: false, createdAt: new Date() },
             { id: 4, name: 'User actions not recognized', isClosed: true, createdAt: new Date() } */
         ];
 
-        function bugsReducer(currentState = initialState, action){
+        function bugsReducer(currentState = initialBugsState, action){
             if (action.type === 'BUG_ADD_NEW'){
                 const newState = [...currentState, action.payload];
                 return newState;
@@ -87,9 +87,27 @@
             return currentState;
         }
 
+        
+
+        function projectsReducer(currentState = [], action){
+            if (action.type === 'PROJECTS_LOAD'){
+                return action.payload;
+            }
+            return currentState;
+        }
         //TO BE FIXED
         let currentBugId = 0;
 
+        const projectActionCreators = {
+            load(){
+                const initialProjectsState = [
+                    { id: 1, name: 'Payroll Master' },
+                    { id: 2, name: 'People Central' }
+                ];
+                const loadProjectsAction = { type : 'PROJECTS_LOAD', payload : initialProjectsState };
+                return loadProjectsAction;
+            }
+        }
         const bugActionCreators = {
             addNew(bugName){
                 const newBug = {
@@ -117,9 +135,27 @@
             }
         }
 
+        const Projects = ({projects, load}) => {
+            React.useEffect(() => {
+                load();
+            }, [load]);
+
+            return (
+                <>
+                    <h3>Projects</h3>
+                    <ol>
+                        {projects.map(project => (
+                            <li key={project.id}>{project.name} </li>
+                        ))}
+                    </ol>
+                </>
+            )
+        }
+
         const BugTracker = ({bugs, addNew, remove, toggle, removeClosed}) => {
             return (
                 <div>
+                    <h3>Bugs</h3>
                     <BugStats bugs={bugs} />
                     <BugSort />
                     <BugEdit addNew={addNew} />
@@ -195,13 +231,28 @@
             )
         }
         
-        const store = StateManager.createStore(bugsReducer);
-        const bugActionDispatchers = StateManager.bindActionCreators(bugActionCreators, store.dispatch);
-        
+        const rootReducer = Redux.combineReducers({
+            bugsState : bugsReducer,
+            projectsState : projectsReducer
+        });
+
+        //const store = Redux.createStore(bugsReducer);
+        //const store = Redux.createStore(projectsReducer);
+
+        const store = Redux.createStore(rootReducer);
+
+        const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
+        const projectActionDispatchers = Redux.bindActionCreators(projectActionCreators, store.dispatch);
+
         function renderApp(){
-            const bugs = store.getState();
+            const storeState = store.getState();
+            const bugs = storeState.bugsState;
+            const projects = storeState.projectsState;
             ReactDOM.render(
-                <BugTracker bugs={bugs} {...bugActionDispatchers}/>
+                <>
+                    <Projects projects={projects} {...projectActionDispatchers} />
+                    <BugTracker bugs={bugs} {...bugActionDispatchers} />
+                </>
                 , document.getElementById('root')
             );
         }
