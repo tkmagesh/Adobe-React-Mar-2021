@@ -8,7 +8,7 @@
     <!-- 
         Use Cases
         ================================================
-        1. Add new bugs
+        (done) 1. Add new bugs
         (done) 2. List the added bugs
         3. Toggle the 'closed' status of any bug
         4. Remove any bug
@@ -61,22 +61,22 @@
      <script type="text/babel">
 
         const initialState = [
-            { id: 1, name : 'Server communication failure', isClosed : false, createdAt : new Date()},
+           /*  { id: 1, name : 'Server communication failure', isClosed : false, createdAt : new Date()},
             { id: 2, name: 'Application not responding', isClosed: true, createdAt: new Date() },
             { id: 3, name: 'Data integrity checks failed', isClosed: false, createdAt: new Date() },
-            { id: 4, name: 'User actions not recognized', isClosed: true, createdAt: new Date() }
+            { id: 4, name: 'User actions not recognized', isClosed: true, createdAt: new Date() } */
         ];
 
         function bugsReducer(currentState = initialState, action){
             if (action.type === 'BUG_ADD_NEW'){
-                currentState.push(action.payload);
-                return currentState;
+                const newState = [...currentState, action.payload];
+                return newState;
             }
             return currentState;
         }
 
         //TO BE FIXED
-        let currentBugId = 4;
+        let currentBugId = 0;
 
         const bugActionCreators = {
             addNew(bugName){
@@ -91,11 +91,11 @@
             }
         }
 
-        const BugTracker = ({bugs}) => {
-            
+        const BugTracker = ({bugs, addNew}) => {
+            const [newBugName, setNewBugName] = React.useState('');
             const bugItems = bugs.map(bug => {
                 return (
-                     <li>
+                     <li key={bug.id}>
                         <span className={"bugname " + (bug.isClosed ? 'closed' : '')}>
                             {bug.name}
                         </span>
@@ -120,8 +120,8 @@
                     </section>
                     <section className="edit">
                         <label htmlFor="">Bug Name :</label>
-                        <input type="text" name="" id="" />
-                        <input type="button" value="Add New" />
+                        <input type="text" value={newBugName} onChange={ evt => setNewBugName(evt.target.value)} />
+                        <input type="button" value="Add New" onClick={() => addNew(newBugName)} />
                     </section>
                     <section className="list">
                         <ol>
@@ -145,12 +145,17 @@
         }
         
         const store = StateManager.createStore(bugsReducer);
-
-        const bugs = store.getState();
-        ReactDOM.render(
-            <BugTracker bugs={bugs}/>
-            , document.getElementById('root')
-        );
+        const bugActionDispatchers = StateManager.bindActionCreators(bugActionCreators, store.dispatch);
+        
+        function renderApp(){
+            const bugs = store.getState();
+            ReactDOM.render(
+                <BugTracker bugs={bugs} {...bugActionDispatchers}/>
+                , document.getElementById('root')
+            );
+        }
+        store.subscribe(renderApp);
+        renderApp();
     </script>
 </head>
 <body>
