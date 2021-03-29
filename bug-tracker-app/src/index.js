@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { bindActionCreators } from 'redux';
-
-import bugActionCreators from './bugs/actions';
-import projectActionCreators from './projects/actions';
+import { Provider } from 'react-redux';
 
 import store from './store';
 
@@ -14,28 +11,17 @@ import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const bugActionDispatchers = bindActionCreators(bugActionCreators, store.dispatch);
-const projectActionDispatchers = bindActionCreators(projectActionCreators, store.dispatch);
+ReactDOM.render(
+    <Provider store={store}>
+        <h1>Bug Tracker</h1>
+        <hr/>
+        <Projects/>
+        <BugTracker/>
+    </Provider>
+    , document.getElementById('root')
+);
 
-function renderApp(){
-    const storeState = store.getState();
 
-    //exracting state for the components
-    const bugs = storeState.bugsState;
-    const projects = storeState.projectsState;
-    
-    ReactDOM.render(
-        <>
-            <h1>Bug Tracker</h1>
-            <hr/>
-            <Projects projects={projects} {...projectActionDispatchers} />
-            <BugTracker bugs={bugs} {...bugActionDispatchers} />
-        </>
-        , document.getElementById('root')
-    );
-}
-store.subscribe(renderApp);
-renderApp();
 /* 
 ES6 Modules
 */

@@ -401,3 +401,9 @@ src/
     /store
         index.js (creation of the store)
     index.js
+
+
+react-redux
+    adapter library to brige between react and redux
+    - connect
+    - Provider
