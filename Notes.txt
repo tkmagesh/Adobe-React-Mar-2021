@@ -407,3 +407,5 @@ react-redux
     adapter library to brige between react and redux
     - connect
     - Provider
+
+Assignment : Associate the newly created bugs to any of the projects
