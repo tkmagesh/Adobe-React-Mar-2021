@@ -241,13 +241,17 @@
 
         const store = Redux.createStore(rootReducer);
 
+        //Creating action dispatchers for components
         const bugActionDispatchers = Redux.bindActionCreators(bugActionCreators, store.dispatch);
         const projectActionDispatchers = Redux.bindActionCreators(projectActionCreators, store.dispatch);
 
         function renderApp(){
             const storeState = store.getState();
+
+            //exracting state for the components
             const bugs = storeState.bugsState;
             const projects = storeState.projectsState;
+            
             ReactDOM.render(
                 <>
                     <Projects projects={projects} {...projectActionDispatchers} />

@@ -353,3 +353,33 @@ State
         Any data that supports the core application logic
         It is high likely that this data is needed in other parts of the application
         DO NOT maintain this data in the component state
+
+create-react-app
+    1. Transpilation of JS
+            ES6 -> ES5
+            JSX -> JS
+    2. Bundle the JS files
+    3. Minify the JS files
+    4. Uglify the JS files
+    5. Hashing of JS files
+    6. Compile SASS/SCSS/LESS -> css
+    7. Bundle the CSS files
+    8. Minify the css files
+    9. Hashing of CSS files
+    10. Update the index.html with references to the newly generated JS and CSS files
+
+Grunt / Gulp / Webpack
+
+Using create-react-app
+    npx create-react-app <app-name>
+        (OR)
+    yarn create react-app <app-name>
+
+Module Systems in JS
+    AMD (Asynchronous Module Definition)
+    CommonJS
+
+ES6 Modules
+    Everything defined in a JS/JSX/TS file is considered private by default
+    Any public entity in a file has to be explicitly 'exported'
+    To use any public entity from other JS files, they have to be explicitly 'imported'
