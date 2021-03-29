@@ -383,3 +383,21 @@ ES6 Modules
     Everything defined in a JS/JSX/TS file is considered private by default
     Any public entity in a file has to be explicitly 'exported'
     To use any public entity from other JS files, they have to be explicitly 'imported'
+
+
+src/
+    /bugs
+        /actions
+        /reducers
+        /components
+        index.js
+    /projects
+        /actions
+        /reduers
+        /components
+        index.js
+    /reducers
+        index.js (creation of root reducer)
+    /store
+        index.js (creation of the store)
+    index.js
