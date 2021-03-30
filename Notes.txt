@@ -418,3 +418,7 @@ Middlewares
 json-server
     Expose the data from a json file as a restful service
 
+    npx json-server db.json -p 3030
+
+Async Operation
+    - using callbacks
