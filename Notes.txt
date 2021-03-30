@@ -409,3 +409,10 @@ react-redux
     - Provider
 
 Assignment : Associate the newly created bugs to any of the projects
+
+the only place where the whole store state is accessible is mapStateToProps
+
+Middlewares
+    Any application logic that need to be applied across the actions can be implemented as a middleware
+
+    
