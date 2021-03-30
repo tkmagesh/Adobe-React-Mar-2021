@@ -70,7 +70,7 @@
                 if (y === 0){
                     return rejectFn(new Error('Invalid arguments!'))
                 }
-                const result = x + y;
+                const result = x / y;
                 console.log(`   [@service] returning result`);
                 resolveFn(result);
             }, 5000);
