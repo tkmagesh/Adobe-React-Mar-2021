@@ -415,4 +415,6 @@ the only place where the whole store state is accessible is mapStateToProps
 Middlewares
     Any application logic that need to be applied across the actions can be implemented as a middleware
 
-    
+json-server
+    Expose the data from a json file as a restful service
+
