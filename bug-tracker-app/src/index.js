@@ -11,6 +11,9 @@ import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import axios from 'axios';
+window['axios'] = axios;
+
 ReactDOM.render(
     <Provider store={store}>
         <h1>Bug Tracker</h1>

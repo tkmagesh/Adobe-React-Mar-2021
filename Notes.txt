@@ -422,3 +422,25 @@ json-server
 
 Async Operation
     - using callbacks
+    - using Promise
+    - using Async Await
+
+Http Client library
+    axios
+        To install
+        yarn add axios
+
+    Using axios
+        To get all bugs
+            let response = await axios.get('http://localhost:3030/bugs');
+            console.table(response.data)
+
+        To post a new bug
+            var newBugData = {
+                id : 0,
+                name : 'Axios fails',
+                isClosed : false,
+                createdAt : new Date()
+            }
+            response = await axios.post('http://localhost:3030/bugs', newBugData)
+            console.log('new bug -> ', response.data)
