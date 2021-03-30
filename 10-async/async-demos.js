@@ -46,7 +46,7 @@
 
     function addAsyncPromiseClient(x,y){
         console.log(`[@client] invoking the service`);
-        var p = addAsyncPromise(100,200)
+        var p = addAsyncPromise(x,y)
         //then, catch
         p.then(function(result){
             console.log(`[@client] result = ${result}`);
