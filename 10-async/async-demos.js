@@ -32,4 +32,42 @@
 
     globalThis['addAsyncClient'] = addAsyncClient;
 
+    function addAsyncPromise(x,y){
+        console.log(`   [@service] processing ${x} and ${y}`);
+        const p = new Promise(function(resolveFn, rejectFn){
+            setTimeout(function(){
+                const result = x + y;
+                console.log(`   [@service] returning result`);
+                resolveFn(result);
+            }, 5000);
+        });
+        return p;
+    }
+
+    function addAsyncPromiseClient(x,y){
+        console.log(`[@client] invoking the service`);
+        var p = addAsyncPromise(100,200)
+        //then, catch
+        p.then(function(result){
+            console.log(`[@client] result = ${result}`);
+        })
+    }
+
+    function divideAsyncPromise(x,y){
+        console.log(`   [@service] processing ${x} and ${y}`);
+        const p = new Promise(function(resolveFn, rejectFn){
+            setTimeout(function(){
+                if (y === 0){
+                    return rejectFn(new Error('Invalid arguments!'))
+                }
+                const result = x + y;
+                console.log(`   [@service] returning result`);
+                resolveFn(result);
+            }, 5000);
+        });
+        return p;
+    }
+
+    globalThis['addAsyncPromiseClient'] = addAsyncPromiseClient;
+
 })();
