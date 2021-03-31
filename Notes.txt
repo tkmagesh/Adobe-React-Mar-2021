@@ -443,4 +443,13 @@ Http Client library
                 createdAt : new Date()
             }
             response = await axios.post('http://localhost:3030/bugs', newBugData)
-            console.log('new bug -> ', response.data)
+        
+        To update an existing bug
+            var updatedBug = { id : , ...}
+            response = await axios.put('http://localhost:3030/bugs/<updatedBug.id>', updatedBug)
+
+        To remove an existing bug
+            var bugToRemove = {id : ,....}
+            response = await axios.delete('http://localhost:3030/bugs/<bugToRemove.id>')
+
+        
