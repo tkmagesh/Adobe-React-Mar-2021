@@ -9,13 +9,13 @@
     {
       "id": 5,
       "name": "User actions not recognized",
-      "isClosed": true,
+      "isClosed": false,
       "createdAt": "2021-01-11T05:28:42.900Z"
     },
     {
       "id": 6,
       "name": "Application is not responding",
-      "isClosed": true,
+      "isClosed": false,
       "createdAt": "2021-02-05T07:01:32.030Z"
     },
     {
@@ -25,18 +25,6 @@
       "createdAt": "2021-03-05T09:58:34.209Z",
       "desc": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur aliquam id pariatur ipsa expedita nesciunt doloribus facilis architecto quisquam totam veniam odio, minima, labore deleniti, neque nam quia amet eveniet.",
       "isActive": true
-    },
-    {
-      "id": 9,
-      "name": "Server not working",
-      "isClosed": false,
-      "createdAt": "2021-03-05T10:59:32.443Z"
-    },
-    {
-      "id": 10,
-      "name": "Axios fails",
-      "isClosed": false,
-      "createdAt": "2021-03-30T17:27:12.293Z"
     }
   ],
   "projects": [

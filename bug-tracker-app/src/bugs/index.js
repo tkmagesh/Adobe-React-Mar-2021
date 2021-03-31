@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -9,9 +10,11 @@ import BugList from './components/bugList';
 import bugActionCreators from './actions';
 
 const BugTracker = ({bugs, addNew, remove, toggle, removeClosed, loadBugs}) => {
+    useEffect(() => {
+        loadBugs();
+    }, [])
     return (
         <div>
-            <input type="button" value="Load Bugs" onClick={loadBugs} />
             <h3>Bugs</h3>
             <BugStats bugs={bugs} />
             <BugSort />

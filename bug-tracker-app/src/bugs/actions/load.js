@@ -1,4 +1,4 @@
-import axios from 'axios';
+import bugApi from '../services/bugApi';
 
 export default function loadBugs(){
     /* return function(dispatch){
@@ -14,9 +14,15 @@ export default function loadBugs(){
         
     } */
 
-    return async function(dispatch){
+    /* return async function(dispatch){
         const response = await axios.get('http://localhost:3030/bugs');
         const bugs = response.data;
+        const action = { type : 'BUG_INIT', payload : bugs};
+        dispatch(action);
+    } */
+
+    return async function(dispatch){
+        const bugs = await bugApi.getAll();
         const action = { type : 'BUG_INIT', payload : bugs};
         dispatch(action);
     }
