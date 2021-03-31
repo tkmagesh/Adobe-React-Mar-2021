@@ -453,3 +453,4 @@ Http Client library
             response = await axios.delete('http://localhost:3030/bugs/<bugToRemove.id>')
 
         
+Display a 'loading...' whenever an async operation is triggered and clear the message when the async operation is completed
