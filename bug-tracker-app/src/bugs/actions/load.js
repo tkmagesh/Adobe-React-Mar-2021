@@ -21,9 +21,16 @@ export default function loadBugs(){
         dispatch(action);
     } */
 
-    return async function(dispatch){
+    /* return async function(dispatch){
         const bugs = await bugApi.getAll();
         const action = { type : 'BUG_INIT', payload : bugs};
         dispatch(action);
-    }
+    } */
+
+    return bugApi
+        .getAll()
+        .then(bugs => {
+            const action = { type : 'BUG_INIT', payload : bugs};
+            return action;
+        });
 }
