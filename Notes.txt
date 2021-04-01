@@ -477,3 +477,34 @@ html:5
 div#div-1.content{This is a div}
 div+span
 div*3>span*3#span-${Span - $}^hr
+
+Event Sources In the Browser
+    Mouse & Keyboard (Stream)
+    setTimeout (Singular)
+    setInterval (Stream)
+    Xhr (Ajax) (Singular)
+    Server Sent Events (Stream)
+    Web Sockets (Stream)
+
+Observable - source of events
+    - subscribe
+
+const countEpic = action$ => action$.pipe(
+  filter(action => action.type === 'CLICK_INCREMENT'),
+  map(action => {
+    return { type: 'INCREMENT', amount: 1 };
+  })
+);
+
+const observableMiddleware = createEpicMiddleware();
+const store = redux.createStore(reducer, redux.applyMiddleware(observableMiddleware));
+
+const fetchEpic = (action$,state$) => action$.pipe(
+  filter(action => action.type === 'FETCH_STOCK_PRICE'),
+  mergeMap(async (action) => {
+    const url = `https://api.iextrading.com/1.0/stock/${action.symbol}/price`;
+    const price = await fetch(url).then(res => res.text());
+    return Object.assign({}, action, { type: 'FETCH_STOCK_PRICE_SUCCESS', price });
+  }),
+  catchError(err => Promise.resolve({ type: 'FETCH_STOCK_PRICE_ERROR', message: err.message }))
+);
