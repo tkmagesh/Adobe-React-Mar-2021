@@ -6,17 +6,50 @@ import store from './store';
 
 import BugTracker from './bugs';
 import Projects from './projects'
+import Home from './home';
 
 import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
 
 ReactDOM.render(
     <Provider store={store}>
-        <h1>Bug Tracker</h1>
+        <Router>
+          <h1>Bug Tracker</h1>
         <hr/>
-        <Projects/>
-        <BugTracker/>
+        <div>
+        
+          <div>
+            <span>
+              [ <Link to="/">Home</Link> ]
+            </span>
+            <span>
+              [ <Link to="/bugs">Bugs</Link> ]
+            </span>
+            <span>
+              [ <Link to="/projects">Projects</Link> ]
+            </span>
+          </div>
+        <Switch>
+          <Route path="/bugs">
+            <BugTracker />
+          </Route>
+          <Route path="/projects">
+            <Projects />
+          </Route>
+          <Route path="/">
+            <Home />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
     </Provider>
     , document.getElementById('root')
 );

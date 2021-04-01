@@ -454,3 +454,26 @@ Http Client library
 
         
 Display a 'loading...' whenever an async operation is triggered and clear the message when the async operation is completed
+
+http://www.amazon.com
+http://www.amazon.com/electronics
+http://www.amazon.com/electronics/mobile-phones
+http://www.amazon.com/electronics/mobile-phones/google
+http://www.amazon.com/electronics/mobile-phones/google/pixel-6
+http://www.amazon.com/electronics/mobile-phones/google/pixel-6/reviews
+
+Outlook
+Outlook/Inbox
+Outlook/Inbox/projects
+Outlook/Inbox/projects/people-central
+Outlook/Inbox/projects/people-central/bugs
+Outlook/Inbox/projects/people-central/bugs/bug-101
+
+http://localhost:300/bugs
+http://localhost:3000/projects
+
+Zen Coding:
+html:5
+div#div-1.content{This is a div}
+div+span
+div*3>span*3#span-${Span - $}^hr

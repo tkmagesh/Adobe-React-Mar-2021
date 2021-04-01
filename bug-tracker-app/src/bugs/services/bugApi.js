@@ -21,4 +21,6 @@ async function remove(bugData){
     return response.data;
 }
 
-export default { getAll, save, remove };
+const bugApi = { getAll, save, remove };
+
+export default bugApi;

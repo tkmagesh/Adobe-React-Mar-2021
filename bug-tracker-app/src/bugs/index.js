@@ -12,7 +12,7 @@ import bugActionCreators from './actions';
 const BugTracker = ({bugs, addNew, remove, toggle, removeClosed, loadBugs}) => {
     useEffect(() => {
         loadBugs();
-    }, [])
+    }, [loadBugs])
     return (
         <div>
             <h3>Bugs</h3>
